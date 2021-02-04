@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.945098, 0.419608, 0.960784, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.502346, 0.497608, 0.521357 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.964505, 3.84082 )
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="StaticBody"]
+depth = 1.998
+polygon = PoolVector2Array( -1.0033, -1.0033, 1.003, -1.003, 1.003, 1.003, -1.003, 1.003 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+
+[node name="CSGMesh2" type="CSGMesh" parent="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18661, 0 )
+mesh = SubResource( 2 )
+material = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18318, 0 )
+shape = SubResource( 3 )
